@@ -8,6 +8,7 @@ class Ship:
         """Initialize the ship and set its starting position."""
 
         self.screen = game.screen
+        self.settings = game.settings
         self.screen_rect = game.screen.get_rect()
 
         # Load the ship image
@@ -19,6 +20,25 @@ class Ship:
 
         # Start the ship at the bottom center
         self.rect.midbottom = self.screen_rect.midbottom
+
+        # Store decimal position for smoother movement
+        self.x = float(self.rect.x)
+
+        # Movement flags
+        self.moving_right = False
+        self.moving_left = False
+
+    def update(self):
+        """Update the ship position based on movement."""
+
+        if self.moving_right:
+            self.x += self.settings.ship_speed
+
+        if self.moving_left:
+            self.x -= self.settings.ship_speed
+
+        # Update the rectangle position
+        self.rect.x = self.x
 
     def blitme(self):
         """Draw the ship at its current location."""

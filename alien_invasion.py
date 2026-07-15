@@ -31,6 +31,9 @@ class AlienInvasion:
         while True:
             self._check_events()
 
+            # Update ship position
+            self.ship.update()
+
             # Draw the ship
             self.ship.blitme()
 
@@ -40,11 +43,31 @@ class AlienInvasion:
         """Respond to keypresses and mouse events."""
 
         for event in pygame.event.get():
+
+            # Close the game window
             if event.type == pygame.QUIT:
                 sys.exit()
 
+            # Key pressed
+            elif event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = True
+
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+
+            # Key released
+            elif event.type == pygame.KEYUP:
+
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False
+
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
+
 
 if __name__ == '__main__':
-    # Make a game instance and run the game.
+    # Create the game and run it
     ai = AlienInvasion()
     ai.run_game()
