@@ -21,3 +21,4 @@ class AlienInvasion:
 if __name__ == '__main__':
     game = AlienInvasion()
     game.run_game()
+        
