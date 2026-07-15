@@ -2,6 +2,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 
 class AlienInvasion:
@@ -21,11 +22,17 @@ class AlienInvasion:
 
         pygame.display.set_caption("Alien Invasion")
 
+        # Create the player ship
+        self.ship = Ship(self)
+
     def run_game(self):
         """Start the main loop for the game."""
 
         while True:
             self._check_events()
+
+            # Draw the ship
+            self.ship.blitme()
 
             pygame.display.flip()
 
