@@ -11,3 +11,5 @@ class Settings:
 
          # Ship settings
         self.ship_speed = 1.5
+        # Game settings
+        self.title = "Alien Invasion"
