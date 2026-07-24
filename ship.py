@@ -1,25 +1,23 @@
-from pathlib import Path
-
 import pygame
+from  pygame.sprite import Sprite
 
-
-class Ship:
+class Ship(Sprite):
     """A class to manage the player's ship."""
 
     def __init__(self, ai_game):
+        super()._init_()
         """Initialize the ship and set its starting position."""
 
         self.screen = ai_game.screen
+         self.screen_rect = ai_game.screen.get_rect()
         self.settings = ai_game.settings
-        self.screen_rect = ai_game.screen.get_rect()
+        
 
         # Load the ship image and get its rect.
-        image_path = Path(__file__).resolve().parent / "Assets" / "images" / "ship.bmp"
-        self.image = pygame.image.load(str(image_path))
+        self.image =pygame.image.load("images/ship.png").convert_alpha
         self.rect = self.image.get_rect()
-
-        # Start each new ship at the bottom center of the screen.
-        self.rect.midbottom = self.screen_rect.midbottom
+        self.center_ship()
+        
         # Movement flags
         self.moving_right = False
         self.moving_left = False
