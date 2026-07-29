@@ -1,6 +1,5 @@
-from pathlib import Path
-
 import pygame
+from pygame.sprite import Sprite
 
 
 class Ship:

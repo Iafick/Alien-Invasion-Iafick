@@ -8,11 +8,11 @@ For my final project, I will redesign the game's orientation by moving the playe
 
 ## Detailed plan
 
-* The player's ship will be positioned at the **top** of the screen.
+* The player's ship will be positioned at the top of the screen.
 * The ship will be rotated to face downward.
 * The aliens will begin at the bottom of the screen and move upward toward the player's ship.
 * The alien images will be rotated so they face upward toward the ship.
-* * Bullets will travel downward toward the aliens.
+* Bullets will travel downward toward the aliens.
 * once the bullets touches and shoots the alien it will disaper together with the allien.
 * I have maintained the overall objective of the game , but I have just reversed the gameplay vertically to create a different experience.
 
