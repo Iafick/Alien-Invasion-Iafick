@@ -1,12 +1,15 @@
-""" 
-CSCI 1511
-author:Imran Afick
-Date: July 19,2025
-Title: Alien Invasion
+"""
+Program Name: Alien Invasion - Track 1
+Author: Imran Afick
+Purpose:
+A side-scrolling alien shooter game created with Pygame.
 
-Discription: Alien Invasion is a game where the player controls a spaceship
-and tries to shooting down the invading alien ships. 
-The game is built using Pygame.
+Starter code:
+Based on Alien Invasion project from:
+https://github.com/RedBeard41/alien_Invasion_starter.git
+
+Date:
+07/25/2026
 """
 import sys
 from time import sleep
