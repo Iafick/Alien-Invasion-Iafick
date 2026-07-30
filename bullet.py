@@ -1,28 +1,42 @@
 import pygame
 from pygame.sprite import Sprite
 
+
 class Bullet(Sprite):
-    def __init__(self, game: 'AlienInvasion'):
-        """Initialize a bullet object at the ship's current position."""
+    """A class to manage bullets fired from the ship."""
+
+    def __init__(self, ai_game):
+        """Create a bullet at the ship's current position."""
         super().__init__()
-        self.screen = game.screen
-        self.settings = game.settings
-        
-        self.image = pygame.image.load(self.settings.bullet_file)
-        self.image = pygame.transform.scale(self.image, 
-             (self.settings.bullet_w, self.settings.bullet_h)
-             )
-        
-        self.rect = self.image.get_rect()
-        self.rect.midtop = game.ship.rect.midtop
+
+        self.screen = ai_game.screen
+        self.settings = ai_game.settings
+
+        # Create the bullet rectangle.
+        self.rect = pygame.Rect(
+            0,
+            0,
+            self.settings.bullet_width,
+            self.settings.bullet_height,
+        )
+
+        # Start the bullet at the top center of the ship.
+        self.rect.midtop = ai_game.ship.rect.midtop
+
+        # Store the bullet position as a decimal.
         self.y = float(self.rect.y)
 
     def update(self):
-        """Move the bullet up the screen and update its position."""
+        """Move the bullet upward."""
+
         self.y -= self.settings.bullet_speed
         self.rect.y = int(self.y)
 
-    def draw(self):
-        """Draw the bullet to the screen."""
-        self.screen.blit(self.image, self.rect)
-        
+    def draw_bullet(self):
+        """Draw the bullet on the screen."""
+
+        pygame.draw.rect(
+            self.screen,
+            self.settings.bullet_color,
+            self.rect,
+        )
