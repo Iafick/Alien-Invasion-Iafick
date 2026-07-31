@@ -19,7 +19,7 @@ class Bullet(Sprite):
         )
 
         # Start the bullet at the top center of the ship.
-        self.rect.midtop = ai_game.ship.rect.midtop
+        self.rect.midtop = ai_game.ship.rect.midbottom
 
         # Store the bullet position as a decimal.
         self.y = float(self.rect.y)
@@ -27,7 +27,7 @@ class Bullet(Sprite):
     def update(self):
         """Move the bullet downward."""
 
-        self.y -= self.settings.bullet_speed
+        self.y += self.settings.bullet_speed
         self.rect.y = int(self.y)
 
     def draw_bullet(self):
