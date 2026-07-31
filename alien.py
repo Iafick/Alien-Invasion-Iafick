@@ -20,7 +20,7 @@ class Alien(Sprite):
 
         self.rect = self.image.get_rect()
 
-        # Start each alien near the top-left.
+        # Start each alien near the bottom-left.
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
 
