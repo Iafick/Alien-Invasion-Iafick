@@ -13,9 +13,7 @@ class Bullet(Sprite):
         self.settings = ai_game.settings
 
         # Create the bullet rectangle.
-        self.rect = pygame.Rect(
-            0,
-            0,
+        self.rect = pygame.Rect( 0, 0,
             self.settings.bullet_width,
             self.settings.bullet_height,
         )
@@ -27,7 +25,7 @@ class Bullet(Sprite):
         self.y = float(self.rect.y)
 
     def update(self):
-        """Move the bullet upward."""
+        """Move the bullet downward."""
 
         self.y -= self.settings.bullet_speed
         self.rect.y = int(self.y)
