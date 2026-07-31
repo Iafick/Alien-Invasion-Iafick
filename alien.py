@@ -3,7 +3,7 @@ from pygame.sprite import Sprite
 
 
 class Alien(Sprite):
-    """A class to represent a single alien."""
+    """A class represents one alien that moves upward towards the player."""
 
     def __init__(self, ai_game):
         """Initialize the alien and set its starting position."""
@@ -11,6 +11,7 @@ class Alien(Sprite):
         super().__init__()
 
         self.screen = ai_game.screen
+        self.rect = self.image.get_rect()
         self.settings = ai_game.settings
 
         # Load the alien image.
@@ -20,33 +21,26 @@ class Alien(Sprite):
 
         self.rect = self.image.get_rect()
 
-        # Start each alien near the bottom-left.
+       #set aliens final position
         self.rect.x = self.rect.width
-        self.rect.y = self.rect.height
+        self.rect.bottom = self.rect.bottom
 
-        # Store horizontal position.
-        self.x = float(self.rect.x)
+        # Store vertical position as decimal.
+        self.y = float(self.rect.y)
 
-    def check_edges(self):
-        """Return True if alien reaches an edge."""
+    def check_edge(self):
+        """Return True if alien reaches top edge."""
 
         screen_rect = self.screen.get_rect()
 
-        if (
-            self.rect.right >= screen_rect.right
-            or self.rect.left <= 0
-        ):
+        if self.rect.top <= screen_rect.top
             return True
 
         return False
 
     def update(self):
-        """Move alien horizontally."""
+        """Move alien upward towards the players ship."""
 
-        self.x += (
-            self.settings.alien_speed
-            * self.settings.fleet_direction
-        )
-
-        self.rect.x = int(self.x)
+        self.y -= self.settings.alien_speed    
+        self.rect.y = int(self.y)
 
