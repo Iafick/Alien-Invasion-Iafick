@@ -23,7 +23,7 @@ class Ship(Sprite):
         # Store a decimal value for the ship's position.
         self.x = float(self.rect.x)
 
-        # Start the ship at the bottom center.
+        # Start the ship at the top center.
         self.center_ship()
 
         # Movement flags.
@@ -31,7 +31,7 @@ class Ship(Sprite):
         self.moving_left = False
 
     def center_ship(self):
-        """Center the ship at the bottom of the screen."""
+        """Center the ship at the top of the screen."""
 
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
