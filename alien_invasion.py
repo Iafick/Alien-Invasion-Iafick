@@ -25,7 +25,7 @@ from button import Button
 
 
 class AlienInvasion:
-    """Overall class to manage game assets and behavior."""
+    """Manage game assets and behavior."""
 
     def __init__(self):
         """Initialize the game and create game resources."""
@@ -123,11 +123,9 @@ class AlienInvasion:
 
         mouse_position = pygame.mouse.get_pos()
 
-        button_clicked = self.play_button.rect.collidepoint(
-            mouse_position
-        )
+        if self.play_button.rect.collidepoint(mouse_position):
 
-        if button_clicked and not self.game_active:
+        if not self.game_active:
             self._start_game()
 
     def _start_game(self):
@@ -150,9 +148,9 @@ class AlienInvasion:
 
         if len(self.bullets) < self.settings.bullets_allowed:
 
-            new_bullet = Bullet(self)
+            bullet = Bullet(self)
 
-            self.bullets.add(new_bullet)
+            self.bullets.add(bullet)
 
     def _update_bullets(self):
         """Update bullets and remove old ones."""
@@ -161,7 +159,7 @@ class AlienInvasion:
 
         for bullet in self.bullets.copy():
 
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.top >= self.settings.screen_height:
                 self.bullets.remove(bullet)
 
         self._check_bullet_alien_collisions()
@@ -188,13 +186,8 @@ class AlienInvasion:
 
             self._create_fleet()
 
-            if hasattr(self.settings, "increase_speed"):
-                self.settings.increase_speed()
-
     def _update_aliens(self):
         """Update alien positions."""
-
-        self._check_fleet_edges()
 
         self.aliens.update()
 
@@ -204,7 +197,7 @@ class AlienInvasion:
         ):
             self._ship_hit()
 
-        self._check_aliens_bottom()
+        self._check_fleet_edges()
 
     def _check_fleet_edges(self):
         """Respond when aliens reach edge."""
