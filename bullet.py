@@ -3,7 +3,7 @@ from pygame.sprite import Sprite
 
 
 class Bullet(Sprite):
-    """A class to manage bullets fired from the ship."""
+    """Manages bullets fired downward from the player ship."""
 
     def __init__(self, ai_game):
         """Create a bullet at the ship's current position."""
