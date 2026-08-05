@@ -125,8 +125,8 @@ class AlienInvasion:
 
         if self.play_button.rect.collidepoint(mouse_position):
 
-        if not self.game_active:
-            self._start_game()
+            if not self.game_active:
+                self._start_game()
 
     def _start_game(self):
         """Start or restart the game."""
