@@ -304,9 +304,11 @@ class AlienInvasion:
 
         alien.rect.x = alien.x
 
-        alien.rect.y = (
-            alien_height
-            + (2 * alien_height * row_number)
+       alien.rect.y = (
+             self.settings.screen_height
+              - alien_height
+              - (2 * alien_height * row_number)
+)
         )
 
         self.aliens.add(alien)
