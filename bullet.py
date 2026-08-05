@@ -18,7 +18,7 @@ class Bullet(Sprite):
             self.settings.bullet_height,
         )
 
-        # Start the bullet at the top center of the ship.
+        # Start the bullet at the bottom center of the ship.
         self.rect.midtop = ai_game.ship.rect.midbottom
 
         # Store the bullet position as a decimal.
