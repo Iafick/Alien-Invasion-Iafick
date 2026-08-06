@@ -1,9 +1,10 @@
+from pathlib import Path
 import pygame
 from pygame.sprite import Sprite
 
 
 class Ship(Sprite):
-    """A class to manage the player's ship."""
+    """Manage the player's ship."""
 
     def __init__(self, ai_game):
         """Initialize the ship and set its starting position."""
@@ -13,33 +14,39 @@ class Ship(Sprite):
         self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
 
-        # Load the ship image.
-        self.image = pygame.image.load(
-            "Assets/images/ship.png"
+        # Load ship image using pathlib.
+        image_path = Path("Assets") / "images" / "ship.png"
+        image = pygame.image.load(
+            image_path
         ).convert_alpha()
+
+        # Rotate ship to face downward.
+        self.image = pygame.transform.rotate(
+            image,
+            180
+        )
 
         self.rect = self.image.get_rect()
 
-        # Store a decimal value for the ship's position.
+        # Store decimal position.
         self.x = float(self.rect.x)
 
-        # Start the ship near the top center.
-        self.center_ship()
-
-        # Movement flags.
+        # Movement controls.
         self.moving_right = False
         self.moving_left = False
 
-    def center_ship(self):
-        """Center the ship at the top of the screen."""
+        # Place ship at the top.
+        self.center_ship()
 
+
+    def center_ship(self):
+        """Place the ship at the top center of the screen."""
         self.rect.midtop = self.screen_rect.midtop
         self.rect.y = 20
         self.x = float(self.rect.x)
 
     def update(self):
-        """Update the ship's position based on movement flags."""
-
+        """Move the ship left or right."""
         if (
             self.moving_right
             and self.rect.right < self.screen_rect.right
@@ -50,12 +57,15 @@ class Ship(Sprite):
             self.moving_left
             and self.rect.left > 0
         ):
+
             self.x -= self.settings.ship_speed
 
         self.rect.x = int(self.x)
 
+
+
     def blitme(self):
-        """Draw the ship at its current location."""
+        """Draw the ship on the screen."""
 
         self.screen.blit(
             self.image,
