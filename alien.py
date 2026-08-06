@@ -1,46 +1,63 @@
+"""
+Program Name: Alien Invasion
+Author: Imran Afick
+
+Purpose:
+Represents alien ships that spawn at the bottom of the screen
+and move upward toward the player's ship.
+
+Starter Code:
+Based on Eric Matthes' Alien Invasion project:
+https://github.com/ehmatthes/pcc_3e
+
+Date:
+August,2, 2026
+"""
+
+from pathlib import Path
 import pygame
 from pygame.sprite import Sprite
 
+
 class Alien(Sprite):
-"""Represent one alien that moves upward toward the player's ship."""
+    """Represent one alien moving upward toward the player's ship."""
 
-def __init__(self, ai_game):
-    """Initialize the alien and set its starting position."""
+    def __init__(self, ai_game):
+        """Initialize the alien and set its starting position."""
 
-    super().__init__()
+        super().__init__()
 
-    self.screen = ai_game.screen
-    self.settings = ai_game.settings
+        self.screen = ai_game.screen
+        self.settings = ai_game.settings
 
-    # Load the alien image.
-    self.image = pygame.image.load(
-        "Assets/images/enemy_4.png"
-    ).convert_alpha()
+        image_path = Path("Assets") / "images" / "enemy_4.png"
 
-    # Create a rectangle for the alien.
-    self.rect = self.image.get_rect()
+        image = pygame.image.load(image_path).convert_alpha()
 
-    # Start the alien near the bottom of the screen.
-    self.rect.x = self.rect.width
-    self.rect.bottom = self.screen.get_rect().bottom
+        # Rotate alien to face upward.
+        self.image = pygame.transform.rotate(image, 180)
 
-    # Store the vertical position as a decimal.
-    self.y = float(self.rect.y)
+        self.rect = self.image.get_rect()
 
-def check_edge(self):
-    """Return True if the alien reaches the top edge."""
+        # Start at bottom of screen.
+        self.rect.midbottom = self.screen.get_rect().midbottom
+        self.y = float(self.rect.y)
 
-    screen_rect = self.screen.get_rect()
 
-    if self.rect.top <= screen_rect.top:
-        return True
+    def check_edge(self):
+        """Return True if alien reaches the player's side."""
 
-    return False
+        screen_rect = self.screen.get_rect()
 
-def update(self):
-    """Move the alien upward toward the player's ship."""
+        if self.rect.top <= screen_rect.top:
+            return True
+        return False
 
-    self.y -= self.settings.alien_speed
-    self.rect.y = int(self.y)
+    def update(self):
+        """Move alien upward."""
+
+        self.y -= self.settings.alien_speed
+
+        self.rect.y = int(self.y)
 
 
