@@ -34,8 +34,8 @@ class Alien(Sprite):
         self.image = pygame.transform.rotate(image, 180)
         self.rect = self.image.get_rect()
 
-        # Start each new alien near the bottom left of the screen.
-        self.rect.x = self.rect.width
+        # Start each new alien near the top left of the screen.
+        self.rect.y = self.rect.width
         self.rect.bottom = self.screen.get_rect().bottom
 
         # Store the alien's exact horizontal and vertical position.
