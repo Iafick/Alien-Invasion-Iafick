@@ -60,3 +60,4 @@ class Button:
             self.msg_image,
             self.msg_image_rect,
         )
+
