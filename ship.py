@@ -71,3 +71,4 @@ class Ship(Sprite):
             self.image,
             self.rect,
         )
+
