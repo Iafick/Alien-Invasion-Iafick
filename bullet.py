@@ -34,3 +34,4 @@ class Bullet(Sprite):
             self.settings.bullet_color,
             self.rect,
         )
+
