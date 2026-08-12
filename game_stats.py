@@ -1,9 +1,13 @@
 class GameStats:
     """Track statistics for Alien Invasion."""
+
     def __init__(self, ai_game):
         """Initialize game statistics."""
         self.settings = ai_game.settings
+
+        # high score should not be reset when new games starts.
         self.high_score = 0
+
         self.reset_stats()
 
     def reset_stats(self):
@@ -11,3 +15,4 @@ class GameStats:
         self.ships_left = self.settings.ship_limit
         self.score = 0
         self.level = 1
+     
