@@ -127,7 +127,7 @@ class AlienInvasion:
         self.stats.reset_stats()
         self.scoreboard.prep_score()
         self.scoreboard.prep_level()
-        self.scoreboard.prep_lives()
+        self.scoreboard.prep_ship()
         self.game_active = True
         self.bullets.empty()
         self.aliens.empty()
@@ -164,12 +164,14 @@ class AlienInvasion:
             self.stats.score += (
                 self.settings.alien_points
                 * len(collisions)
-            )
-
+             )
+ 
             self.scoreboard.prep_score()
+            self.scoreboard.check_high_score()
+
         if not self.aliens:
-            self.bullets.empty()
-            self._create_fleet()
+             self.bullets.empty()
+             self._create_fleet()
 
     def _update_aliens(self):
         """
@@ -214,7 +216,7 @@ class AlienInvasion:
 
         if self.stats.ships_left > 0:
             self.stats.ships_left -= 1
-            self.scoreboard.prep_lives()
+            self.scoreboard.prep_ship()
             self.bullets.empty()
             self.aliens.empty()
             self._create_fleet()
@@ -246,8 +248,7 @@ class AlienInvasion:
             2 * alien_width
         )
 
-        number_rows = 3
-
+        number_rows = 2
         for row_number in range(number_rows):
 
             for alien_number in range(number_aliens_x):
