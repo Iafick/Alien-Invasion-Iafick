@@ -27,8 +27,12 @@ class Settings:
     def initialize_dynamic_settings(self):
         """Initialize settings that change during gameplay."""
         self.ship_speed = 3.0
-        self.alien_speed = 2.0
+        self.alien_speed = 1.5
         self.bullet_speed = 5.0
+        
+        #fleetdirection of 1 represents right; -1 represents left.
+        self.fleet_direction = 1
+        self.fleet_drop_speed = 10
         
         # Scoring.
         self.alien_points = 50
@@ -41,3 +45,4 @@ class Settings:
         self.alien_points = int(
             self.alien_points * self.score_scale
         )
+
